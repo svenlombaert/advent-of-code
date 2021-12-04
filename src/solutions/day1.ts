@@ -20,6 +20,31 @@ import { promises as fs } from 'fs';
 
     return increases;
   }
-  
+
+  const part2 = () => {
+    let previousValue;
+    let increases = 0;
+    for (let i = 0; i< arr.length - 2; i++ ) {
+      const first = arr[i];
+      const second = arr[i + 1];
+      const third = arr[i + 2];
+
+      if (!first || !second || !third) {
+        continue;
+      }
+
+      const value = first + second + third;
+
+      if (previousValue && value > previousValue) {
+        increases++;
+      }
+      
+      previousValue = value;
+    }
+
+    return increases
+  }
+
   console.log(part1()); // 1475
+  console.log(part2()); // 1516
 })()
